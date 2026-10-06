@@ -1,26 +1,200 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+  Jungle Diaries design tokens.
+  Concept: a naturalist's field diary of Corbett. Logo-green chapters alternate with
+  sand-paper pages, and handwritten margin notes carry the diary voice.
+  Colours are overridden for dark mode further down, so utilities like `bg-paper`
+  or `text-ink` follow the visitor's system theme automatically.
+*/
+@theme {
+  --color-paper: #ebdec5;
+  --color-paper-2: #e2d2b3;
+  --color-ink: #1c2b20;
+  --color-ink-soft: #4b5a4b;
+  --color-line: rgb(28 43 32 / 0.2);
+  --color-forest: #2e4f33;
+  --color-forest-deep: #1f3824;
+  --color-sand: #efdfc1;
+  --color-sand-soft: #c4b394;
+  --color-sand-line: rgb(239 223 193 / 0.22);
+  --color-gold: #d6a41c;
+  --color-gold-ink: #1b2e1f;
+  --color-note: #2e4f33;
+  --color-marigold: #e8bd3a;
+  --color-chip: #f6efe1;
+  --color-photo: #f3e5c8;
+  --color-photo-soft: #ddceb0;
+
+  --text-label: 0.8rem;
+  --text-label--line-height: 1.4;
+  --text-small: 0.95rem;
+  --text-small--line-height: 1.6;
+  --text-body: 1.0625rem;
+  --text-body--line-height: 1.6;
+  --text-lead: 1.25rem;
+  --text-lead--line-height: 1.55;
+  --text-stat: 1.5rem;
+  --text-stat--line-height: 1.1;
+  --text-h3: clamp(1.5rem, 1.2rem + 1.1vw, 2.05rem);
+  --text-h3--line-height: 1.1;
+  --text-quote: clamp(1.9rem, 1.3rem + 2.3vw, 3.1rem);
+  --text-quote--line-height: 1.12;
+  --text-h2: clamp(2.2rem, 1.45rem + 3vw, 3.7rem);
+  --text-h2--line-height: 1.04;
+  --text-page: clamp(2.5rem, 1.5rem + 4.2vw, 5rem);
+  --text-page--line-height: 1.04;
+  --text-hero: clamp(2.7rem, 1.4rem + 5.6vw, 6rem);
+  --text-hero--line-height: 1.04;
+
+  --radius-card: 4px;
+
+  --animate-rise: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+
+  @keyframes rise {
+    from {
+      transform: translateY(16px);
+      opacity: 0.15;
+    }
+    to {
+      transform: none;
+      opacity: 1;
+    }
+  }
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-rozha), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-mukta), "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-hand: var(--font-kalam), "Segoe Print", "Bradley Hand", cursive;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --color-paper: #131c15;
+    --color-paper-2: #1a261d;
+    --color-ink: #eadcc0;
+    --color-ink-soft: #b5a88f;
+    --color-line: rgb(234 220 192 / 0.16);
+    --color-forest: #1d3322;
+    --color-forest-deep: #15261a;
+    --color-sand: #eadcc0;
+    --color-sand-soft: #b9aa8d;
+    --color-sand-line: rgb(234 220 192 / 0.18);
+    --color-gold: #e2b531;
+    --color-gold-ink: #15261a;
+    --color-note: #e2b531;
+    --color-marigold: #e8bd3a;
+    --color-chip: #f3ead8;
+    color-scheme: dark;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  :root {
+    --gutter: clamp(16px, 4vw, 48px);
+    /* Tone variables: every section sets these so shared components read correctly on paper or forest. */
+    --soft: var(--color-ink-soft);
+    --rule: var(--color-line);
+    --mark: var(--color-note);
+    --dot: var(--color-gold);
+    color-scheme: light;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 1.04;
+    text-wrap: balance;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 3px;
+  }
+}
+
+/* Section tones */
+@utility tone-paper {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  --soft: var(--color-ink-soft);
+  --rule: var(--color-line);
+  --mark: var(--color-note);
+  --dot: var(--color-gold);
+}
+
+@utility tone-paper-2 {
+  background-color: var(--color-paper-2);
+  color: var(--color-ink);
+  --soft: var(--color-ink-soft);
+  --rule: var(--color-line);
+  --mark: var(--color-note);
+  --dot: var(--color-gold);
+}
+
+@utility tone-forest {
+  background-color: var(--color-forest);
+  color: var(--color-sand);
+  --soft: var(--color-sand-soft);
+  --rule: var(--color-sand-line);
+  --mark: var(--color-marigold);
+  --dot: var(--color-marigold);
+}
+
+@utility tone-deep {
+  background-color: var(--color-forest-deep);
+  color: var(--color-sand);
+  --soft: var(--color-sand-soft);
+  --rule: var(--color-sand-line);
+  --mark: var(--color-marigold);
+  --dot: var(--color-marigold);
+}
+
+@utility tone-photo {
+  color: var(--color-photo);
+  --soft: var(--color-photo-soft);
+  --rule: rgb(243 229 200 / 0.3);
+  --mark: var(--color-marigold);
+  --dot: var(--color-marigold);
+}
+
+/* Photo scrims */
+@utility scrim-home {
+  background:
+    linear-gradient(90deg, rgb(14 28 18 / 0.88) 0%, rgb(14 28 18 / 0.62) 46%, rgb(14 28 18 / 0.18) 100%),
+    linear-gradient(0deg, rgb(14 28 18 / 0.7) 0%, rgb(14 28 18 / 0) 45%);
+}
+
+@utility scrim-page {
+  background:
+    linear-gradient(0deg, rgb(14 28 18 / 0.88) 0%, rgb(14 28 18 / 0.35) 55%, rgb(14 28 18 / 0.15) 100%),
+    linear-gradient(90deg, rgb(14 28 18 / 0.55) 0%, rgb(14 28 18 / 0) 70%);
+}
+
+@utility scrim-bottom {
+  background: linear-gradient(0deg, rgb(10 20 14 / 0.85), rgb(10 20 14 / 0) 70%);
 }

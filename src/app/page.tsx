@@ -1,69 +1,158 @@
 import Image from "next/image";
+import Link from "next/link";
+import { CtaBand } from "@/components/blocks";
+import { StaysOverview } from "@/components/stays-overview";
+import { Button, Container, Eyebrow, H2, JsonLd, Section, TextLink } from "@/components/ui";
+import heroForest from "@/images/hero-forest.jpg";
+import logo from "@/images/jd-logo.png";
+import { PHONES, SITE_NAME, siteUrl } from "@/lib/site";
+import type { Metadata } from "next";
 
-export default function Home() {
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
+
+const EXPLORE = [
+  {
+    href: "/safaris",
+    kind: "Safaris",
+    title: "Know your zone before you book",
+    rows: [
+      ["Dhela, Jhirna", "open all year"],
+      ["Bijrani, Durga Devi", "from 15 Oct"],
+      ["Dhikala", "from 15 Nov"],
+    ],
+    go: "Safari zones",
+  },
+  {
+    href: "/journeys",
+    kind: "Journeys",
+    title: "Corbett first, then the rest of Uttarakhand",
+    text: "Family holidays, custom tours, MICE, weddings and school trips, to Nainital, Mukteshwar, Rishikesh, Mussoorie and more.",
+    go: "See journeys",
+  },
+  {
+    href: "/about",
+    kind: "About us",
+    title: "The people who keep the diaries",
+    text: "A naturalist and ornithologist runs operations. The kitchen is led by a chef with nearly 30 years in hospitality.",
+    go: "Meet the team",
+  },
+];
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "TravelAgency",
+          name: SITE_NAME,
+          url: siteUrl(),
+          logo: `${siteUrl()}/icon.png`,
+          telephone: PHONES[0],
+          slogan: "Your Journey. Your Story. Our Wild Connection.",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "Himmatpur Dotiyal, Dhela Road",
+            addressLocality: "Ramnagar",
+            addressRegion: "Uttarakhand",
+            addressCountry: "IN",
+          },
+          areaServed: "Uttarakhand, India",
+        }}
+      />
+
+      <section aria-labelledby="hero-title" className="tone-photo relative isolate overflow-hidden bg-forest-deep px-(--gutter) pt-[clamp(96px,14vw,170px)] pb-[clamp(56px,7vw,88px)]">
+        <Image src={heroForest} alt="" fill preload placeholder="blur" sizes="100vw" className="-z-20 object-cover object-[center_40%]" />
+        <div aria-hidden="true" className="scrim-home absolute inset-0 -z-10" />
+        <Container className="grid items-end gap-10 md:grid-cols-[minmax(0,1fr)_auto]">
+          <div>
+            <Eyebrow>Jim Corbett · Ramnagar · Uttarakhand</Eyebrow>
+            <h1 id="hero-title" className="max-w-[12ch] text-hero text-photo">
+              <span className="block motion-safe:animate-rise">Your journey.</span>
+              <span className="block motion-safe:animate-rise motion-safe:[animation-delay:80ms]">Your story.</span>
+              <span className="block motion-safe:animate-rise motion-safe:[animation-delay:160ms]">
+                Our <em className="text-marigold not-italic">wild</em> connection.
+              </span>
+            </h1>
+            <p className="mt-[26px] max-w-[52ch] text-lead text-photo-soft motion-safe:animate-rise motion-safe:[animation-delay:220ms]">
+              Jungle Diaries is a travel and wildlife company based in Jim Corbett. We run two stays on Dhela Road in
+              Ramnagar, plan safaris with people who know the forest, and put together journeys across Uttarakhand.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3 motion-safe:animate-rise motion-safe:[animation-delay:300ms]">
+              <Button href="#stays">See our stays</Button>
+              <Button href="/plan-a-trip" variant="ghost">
+                Plan a trip
+              </Button>
+            </div>
+            <div className="mt-11 flex flex-wrap gap-x-[22px] gap-y-2 text-label tracking-[0.14em] text-photo-soft uppercase tabular-nums">
+              <span>29.39° N · 79.13° E</span>
+              <span>Corbett Tiger Reserve</span>
+            </div>
+          </div>
+          <Image
+            src={logo}
+            alt="Jungle Diaries tiger emblem"
+            className="row-start-1 w-24 drop-shadow-[0_10px_28px_rgba(0,0,0,0.4)] md:row-auto md:w-[clamp(120px,14vw,176px)]"
+            sizes="176px"
+          />
+        </Container>
+      </section>
+
+      <StaysOverview />
+
+      <Section aria-label="What we believe">
+        <Container className="grid items-end gap-x-14 gap-y-7 md:grid-cols-[minmax(0,1fr)_auto]">
+          <div>
+            <Eyebrow>What we believe</Eyebrow>
+            <blockquote className="m-0 max-w-[26ch] font-display text-[clamp(1.7rem,1.2rem+2vw,2.8rem)] leading-[1.14] text-balance">
+              Travel is not simply about visiting a destination. It is about a meaningful connection with nature, people
+              and experiences.
+            </blockquote>
+          </div>
+          <TextLink href="/about">Read our story and meet the team</TextLink>
+        </Container>
+      </Section>
+
+      <Section tone="deep" aria-labelledby="explore-title">
+        <Container>
+          <Eyebrow>Beyond the stay</Eyebrow>
+          <H2 id="explore-title">Plan the whole trip with us</H2>
+          <div className="mt-[clamp(32px,4vw,48px)] grid gap-[clamp(16px,2.4vw,28px)] md:grid-cols-3">
+            {EXPLORE.map((card) => (
+              <Link
+                key={card.href}
+                href={card.href}
+                className="flex min-w-0 flex-col gap-3.5 rounded-card border border-sand-line bg-forest-deep p-[clamp(22px,2.6vw,30px)] no-underline transition hover:-translate-y-0.5 hover:border-marigold"
+              >
+                <span className="text-label font-semibold tracking-[0.14em] text-sand-soft uppercase">{card.kind}</span>
+                <h3 className="text-[1.75rem] leading-[1.1]">{card.title}</h3>
+                {card.rows ? (
+                  <ul className="grid gap-1.5 text-[0.92rem]">
+                    {card.rows.map(([a, b]) => (
+                      <li key={a} className="flex justify-between gap-3 border-b border-sand-line pb-1.5">
+                        <span>{a}</span>
+                        <span className="text-right text-sand-soft">{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-small text-sand-soft">{card.text}</p>
+                )}
+                <span className="mt-auto pt-2 font-semibold text-marigold">{card.go} →</span>
+              </Link>
+            ))}
+          </div>
+        </Container>
+      </Section>
+
+      <CtaBand
+        title="Tell us where you want to go"
+        text="Share your dates and who's travelling. We'll reply on WhatsApp with stays, safari options and rates."
+        href="/plan-a-trip"
+        button="Plan a trip"
+      />
+    </>
   );
 }
