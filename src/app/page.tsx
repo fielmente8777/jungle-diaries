@@ -1,11 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { CtaBand } from "@/components/blocks";
+import { Reviews } from "@/components/reviews";
 import { StaysOverview } from "@/components/stays-overview";
 import { Button, Container, Eyebrow, H2, JsonLd, Section, TextLink } from "@/components/ui";
 import heroForest from "@/images/hero-forest.jpg";
 import logo from "@/images/jd-logo.png";
 import { PHONES, SITE_NAME, siteUrl } from "@/lib/site";
+import { AMALTAS_RATING, AMALTAS_REVIEWS } from "@/lib/reviews";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -114,6 +116,16 @@ export default function HomePage() {
           <TextLink href="/about">Read our story and meet the team</TextLink>
         </Container>
       </Section>
+
+      <Reviews
+        tone="paper-2"
+        id="guest-reviews"
+        eyebrow="Guest reviews · Amaltas Villa"
+        title="Stories from the stay"
+        reviews={AMALTAS_REVIEWS.slice(0, 3)}
+        rating={AMALTAS_RATING}
+        more={{ href: "/amaltas-villa#reviews", label: "More from Amaltas guests →" }}
+      />
 
       <Section tone="deep" aria-labelledby="explore-title">
         <Container>

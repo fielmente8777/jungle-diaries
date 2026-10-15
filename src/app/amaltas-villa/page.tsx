@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image, { type StaticImageData } from "next/image";
 import { NextPage, PageHero } from "@/components/blocks";
+import { Reviews } from "@/components/reviews";
 import { Button, Container, Eyebrow, H2, JsonLd, Label, Lead, Note, Section, TextLink, Ticks } from "@/components/ui";
 import amaltasDusk from "@/images/amaltas-dusk.jpg";
 import amaltasLogo from "@/images/amaltas-logo.png";
@@ -12,6 +13,7 @@ import roomDurgadevi from "@/images/room-durgadevi.jpg";
 import roomJhirna from "@/images/room-jhirna.jpg";
 import roomSitabani from "@/images/room-sitabani.jpg";
 import { AMALTAS_EMAIL, LINKS, PHONES, siteUrl } from "@/lib/site";
+import { AMALTAS_RATING, AMALTAS_REVIEWS } from "@/lib/reviews";
 
 export const metadata: Metadata = {
   title: "Amaltas Villa — Boutique Villa on Dhela Road, Jim Corbett",
@@ -238,6 +240,13 @@ export default function AmaltasPage() {
           </Lead>
         </Container>
       </Section>
+
+      <Reviews
+        reviews={AMALTAS_REVIEWS}
+        title="Stories from the stay"
+        intro="What guests say after a few slow days at Amaltas."
+        rating={AMALTAS_RATING}
+      />
 
       <NextPage href="/destinn-dhela-retreat" title="Destinn Dhela Retreat" sub="Fourteen rooms, a rooftop infinity pool and stargazing" />
     </>
