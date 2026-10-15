@@ -117,16 +117,6 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      <Reviews
-        tone="paper-2"
-        id="guest-reviews"
-        eyebrow="Guest reviews · Amaltas Villa"
-        title="Stories from the stay"
-        reviews={AMALTAS_REVIEWS.slice(0, 3)}
-        rating={AMALTAS_RATING}
-        more={{ href: "/amaltas-villa#reviews", label: "More from Amaltas guests →" }}
-      />
-
       <Section tone="deep" aria-labelledby="explore-title">
         <Container>
           <Eyebrow>Beyond the stay</Eyebrow>
@@ -164,6 +154,16 @@ export default function HomePage() {
         text="Share your dates and who's travelling. We'll reply on WhatsApp with stays, safari options and rates."
         href="/plan-a-trip"
         button="Plan a trip"
+      />
+
+      <Reviews
+        tone="paper-2"
+        id="guest-reviews"
+        eyebrow="Guest reviews · Amaltas Villa"
+        title="Stories from the stay"
+        reviews={AMALTAS_REVIEWS}
+        rating={AMALTAS_RATING}
+        more={{ href: "/amaltas-villa", label: "Explore Amaltas Villa →" }}
       />
     </>
   );
