@@ -84,8 +84,33 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
 
   gtag('config', 'G-XELKDTE04Q');`}
 </Script>
+
+         <Script
+          id="google-tag-manager-script"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TGT82PWB');
+            `,
+          }}
+        />
+
+   
       </head>
       <body>
+         <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-TGT82PWB"
+            height="0"
+            width="0"
+            title="Google Tag Manager (noscript)"
+            style={{ display: "none", visibility: "hidden" }}
+          ></iframe>
+        </noscript>
         <a
           href="#main"
           className="sr-only rounded-full bg-gold px-3.5 py-2 text-gold-ink focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50"
