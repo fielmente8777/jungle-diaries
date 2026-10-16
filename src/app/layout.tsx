@@ -75,7 +75,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en-IN" className={`${rozha.variable} ${mukta.variable} ${kalam.variable}`}>
        <head>
-        <!-- Google tag (gtag.js) -->
+        {/* <!-- Google tag (gtag.js) --> */}
 <Script id="google-analytics" strategy="afterInteractive" async src="https://www.googletagmanager.com/gtag/js?id=G-XELKDTE04Q"></Script>
 <Script id="google-analytics" strategy="afterInteractive">
   {`window.dataLayer = window.dataLayer || [];
