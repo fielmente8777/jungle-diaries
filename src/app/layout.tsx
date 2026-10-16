@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { SITE_NAME, siteUrl } from "@/lib/site";
+import Script from "next/script";
 import "./globals.css";
 
 // Fonts are self-hosted from src/fonts (SIL Open Font License).
@@ -73,6 +74,17 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en-IN" className={`${rozha.variable} ${mukta.variable} ${kalam.variable}`}>
+       <head>
+        <!-- Google tag (gtag.js) -->
+<Script id="google-analytics" strategy="afterInteractive" async src="https://www.googletagmanager.com/gtag/js?id=G-XELKDTE04Q"></Script>
+<Script id="google-analytics" strategy="afterInteractive">
+  {`window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XELKDTE04Q');`}
+</Script>
+      </head>
       <body>
         <a
           href="#main"
