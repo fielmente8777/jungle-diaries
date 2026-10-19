@@ -28,12 +28,13 @@ const TEAM = [
   {
     name: "KD Paliwal",
     role: "Executive Chef",
-    years: "~30",
+    years: "30",
     text: "Specialises in multi-cuisine operations, Indian cuisine and kitchen management.",
   },
   {
     name: "Dr. Akash Bhardwaj",
     role: "Author · Social entrepreneur · Wildlife & tourism advocate",
+    years: "18",
     text: "Focuses on inclusion, social responsibility, wildlife awareness and destination storytelling, with a particular interest in more opportunities for persons with disabilities in tourism.",
   },
   {
