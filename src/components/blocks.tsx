@@ -9,9 +9,9 @@ type PageHeroProps = {
   eyebrow: string;
   title: ReactNode;
   intro: ReactNode;
-  image?: StaticImageData;
+  image?: StaticImageData | string;
   imageAlt?: string;
-  logo?: { src: StaticImageData; alt: string; height: number };
+  logo?: { src: StaticImageData | string; alt: string; height: number; width?: number };
   wordmark?: string;
   note?: ReactNode;
   children?: ReactNode;
@@ -31,7 +31,15 @@ export function PageHero({ crumb, eyebrow, title, intro, image, imageAlt = "", l
     >
       {image && (
         <>
-          <Image src={image} alt={imageAlt} fill preload placeholder="blur" sizes="100vw" className="-z-20 object-cover" />
+          <Image
+            src={image}
+            alt={imageAlt}
+            fill
+            preload
+            {...(typeof image !== "string" ? { placeholder: "blur" } : {})}
+            sizes="100vw"
+            className="-z-20 object-cover"
+          />
           <div aria-hidden="true" className="scrim-page absolute inset-0 -z-10" />
         </>
       )}
@@ -45,7 +53,17 @@ export function PageHero({ crumb, eyebrow, title, intro, image, imageAlt = "", l
         </nav>
         {logo && (
           <span className="mb-[22px] inline-block rounded-card bg-chip px-2.5 py-2">
-            <Image src={logo.src} alt={logo.alt} style={{ height: logo.height, width: "auto" }} />
+            {typeof logo.src === "string" ? (
+              <Image
+                src={logo.src}
+                alt={logo.alt}
+                width={logo.width ?? Math.round((logo.height * 972) / 583)}
+                height={logo.height}
+                style={{ height: logo.height, width: "auto" }}
+              />
+            ) : (
+              <Image src={logo.src} alt={logo.alt} style={{ height: logo.height, width: "auto" }} />
+            )}
           </span>
         )}
         <p className="mb-[18px] flex items-center gap-2.5 text-label font-semibold tracking-[0.16em] text-(--soft) uppercase before:h-px before:w-[26px] before:flex-none before:bg-current before:opacity-60 before:content-['']">

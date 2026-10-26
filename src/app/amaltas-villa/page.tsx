@@ -1,17 +1,9 @@
 import type { Metadata } from "next";
-import Image, { type StaticImageData } from "next/image";
+import Image from "next/image";
 import { NextPage, PageHero } from "@/components/blocks";
 import { Reviews } from "@/components/reviews";
 import { Button, Container, Eyebrow, H2, JsonLd, Label, Lead, Note, Section, TextLink, Ticks } from "@/components/ui";
-import amaltasDusk from "@/images/amaltas-dusk.jpg";
 import amaltasLogo from "@/images/amaltas-logo.png";
-import amaltasPool from "@/images/amaltas-pool.jpg";
-import roomBijrani from "@/images/room-bijrani.jpg";
-import roomDhikalaJacuzzi from "@/images/room-dhikala-jacuzzi.jpg";
-import roomDhikala from "@/images/room-dhikala.jpg";
-import roomDurgadevi from "@/images/room-durgadevi.jpg";
-import roomJhirna from "@/images/room-jhirna.jpg";
-import roomSitabani from "@/images/room-sitabani.jpg";
 import { AMALTAS_EMAIL, LINKS, PHONES, siteUrl } from "@/lib/site";
 import { AMALTAS_RATING, AMALTAS_REVIEWS } from "@/lib/reviews";
 
@@ -22,13 +14,13 @@ export const metadata: Metadata = {
   alternates: { canonical: "/amaltas-villa" },
 };
 
-type Room = { name: string; size: string; image: StaticImageData; tags: string[] };
+type Room = { name: string; size: string; image: string; tags: string[] };
 
 const ROOMS: Room[] = [
-  { name: "Bijrani Room", size: "300 sq. ft.", image: roomBijrani, tags: ["Double bed", "Private balcony", "1 extra bed"] },
-  { name: "Durgadevi Room", size: "300 sq. ft.", image: roomDurgadevi, tags: ["Double bed", "Jungle-facing window", "1 extra bed"] },
-  { name: "Jhirna Room", size: "250 sq. ft.", image: roomJhirna, tags: ["Double bed", "Couples & solo travellers"] },
-  { name: "Sitabani Room", size: "200 sq. ft.", image: roomSitabani, tags: ["Double bed", "2 guests", "For couples"] },
+  { name: "Bijrani Room", size: "300 sq. ft.", image: "/amaltas/b-room1.jpg", tags: ["Double bed", "Private balcony", "1 extra bed"] },
+  { name: "Durgadevi Room", size: "300 sq. ft.", image: "/amaltas/du-room1.jpg", tags: ["Double bed", "Jungle-facing window", "1 extra bed"] },
+  { name: "Jhirna Room", size: "250 sq. ft.", image: "/amaltas/j-room1.jpeg", tags: ["Double bed", "Couples & solo travellers"] },
+  { name: "Sitabani Room", size: "200 sq. ft.", image: "/amaltas/s-room1.jpeg", tags: ["Double bed", "2 guests", "For couples"] },
 ];
 
 function Tags({ tags }: { tags: string[] }) {
@@ -86,7 +78,7 @@ export default function AmaltasPage() {
         eyebrow="Boutique villa · Himmatpur Dotiyal, Dhela Road"
         title="An intimate forest escape in Corbett"
         intro="Six rooms, a pool, a forest-view terrace and a dining room for twelve. A slower, more personal way to experience Jim Corbett."
-        image={amaltasDusk}
+        image="/amaltas/dining-image.jpg"
         imageAlt="Amaltas Villa's pool terrace and lit verandas at dusk"
         logo={{ src: amaltasLogo, alt: "Amaltas by Jungle Diaries", height: 56 }}
       >
@@ -113,9 +105,10 @@ export default function AmaltasPage() {
           </div>
           <figure className="relative m-0">
             <Image
-              src={amaltasPool}
+              src="/amaltas/image2.jpg"
               alt="The stone cottage and pool at Amaltas Villa"
-              placeholder="blur"
+              width={1440}
+              height={800}
               sizes="(min-width: 1024px) 55vw, 100vw"
               className="aspect-[3/2] w-full rounded-card object-cover"
             />
@@ -143,8 +136,8 @@ export default function AmaltasPage() {
           <div className="grid gap-[clamp(14px,2vw,22px)] sm:grid-cols-2 lg:grid-cols-[1.25fr_1fr_1fr]">
             <article className="flex min-w-0 flex-col overflow-hidden rounded-card bg-paper sm:col-span-2 lg:col-span-1 lg:row-span-2">
               <div className="grid gap-[3px] sm:grid-cols-[1.4fr_1fr] lg:grid-cols-1">
-                <Image src={roomDhikala} alt="The Dhikala Family Suite bedroom" placeholder="blur" sizes="(min-width: 1024px) 38vw, (min-width: 640px) 58vw, 100vw" className="aspect-[4/3] h-full w-full object-cover" />
-                <Image src={roomDhikalaJacuzzi} alt="The jacuzzi in the Dhikala Family Suite" placeholder="blur" sizes="(min-width: 1024px) 38vw, (min-width: 640px) 42vw, 100vw" className="aspect-[4/3] h-full w-full object-cover lg:aspect-[2/1]" />
+                <Image src="/amaltas/d-room1.jpg" alt="The Dhikala Family Suite bedroom" width={3000} height={2000} sizes="(min-width: 1024px) 38vw, (min-width: 640px) 58vw, 100vw" className="aspect-[4/3] h-full w-full object-cover" />
+                <Image src="/amaltas/d-romm5.jpg" alt="The jacuzzi in the Dhikala Family Suite" width={3000} height={2000} sizes="(min-width: 1024px) 38vw, (min-width: 640px) 42vw, 100vw" className="aspect-[4/3] h-full w-full object-cover lg:aspect-[2/1]" />
               </div>
               <div className="flex flex-1 flex-col gap-1.5 px-[18px] pt-4 pb-[18px]">
                 <div className="flex items-baseline justify-between gap-3">
@@ -157,7 +150,7 @@ export default function AmaltasPage() {
             </article>
             {ROOMS.map((room) => (
               <article key={room.name} className="flex min-w-0 flex-col overflow-hidden rounded-card bg-paper">
-                <Image src={room.image} alt={`The ${room.name}`} placeholder="blur" sizes="(min-width: 1024px) 28vw, (min-width: 640px) 50vw, 100vw" className="aspect-[3/2] w-full object-cover" />
+                <Image src={room.image} alt={`The ${room.name}`} width={1200} height={800} sizes="(min-width: 1024px) 28vw, (min-width: 640px) 50vw, 100vw" className="aspect-[3/2] w-full object-cover" />
                 <div className="flex flex-1 flex-col gap-1.5 px-[18px] pt-4 pb-[18px]">
                   <div className="flex items-baseline justify-between gap-3">
                     <h3 className="text-[1.4rem] leading-[1.15]">{room.name}</h3>

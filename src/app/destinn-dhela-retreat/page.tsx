@@ -2,12 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { NextPage, PageHero } from "@/components/blocks";
 import { Button, Container, Eyebrow, H2, JsonLd, Label, Lead, Note, Section, TextLink, Ticks } from "@/components/ui";
-import destinnBuilding from "@/images/destinn-building.jpg";
-import destinnGarden from "@/images/destinn-garden.jpg";
-import destinnLogo from "@/images/destinn-logo.png";
-import destinnRooftop from "@/images/destinn-rooftop.jpg";
-import destinnRoom from "@/images/destinn-room.jpg";
-import destinnStars from "@/images/destinn-stars.jpg";
 import { LINKS, PHONES, siteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -63,9 +57,9 @@ export default function DestinnPage() {
         eyebrow="Nature retreat · about 4 km from Ramnagar"
         title="Stay close to the wild. Stay close to comfort."
         intro="Fourteen spacious rooms near the Dhela Safari Zone, with a rooftop infinity pool, two restaurants and stargazing at night."
-        image={destinnRooftop}
-        imageAlt="Destinn's rooftop terrace with benches and the infinity pool beyond"
-        logo={{ src: destinnLogo, alt: "Destinn", height: 56 }}
+        image="/destinn/banner2.webp"
+        imageAlt="Destinn's rooftop terrace and infinity pool with forest views at sunset"
+        logo={{ src: "/destinn/Logo1.jpeg", alt: "Destinn by Jungle Diaries", height: 56, width: 93 }}
       >
         <Button href="/plan-a-trip#destinn">Enquire about Destinn</Button>
         <Button href={LINKS.destinnSite} variant="ghost" external>
@@ -87,13 +81,13 @@ export default function DestinnPage() {
           </div>
           <div className="grid grid-cols-2 gap-[clamp(10px,1.4vw,16px)] md:grid-cols-[minmax(0,1.7fr)_minmax(0,1fr)]">
             <div className="relative col-span-2 aspect-video overflow-hidden rounded-card md:col-span-1 md:aspect-[2/1]">
-              <Image src={destinnGarden} alt="The garden at Destinn Dhela Retreat at dusk" fill placeholder="blur" sizes="(min-width: 768px) 63vw, 100vw" className="object-cover" />
+              <Image src="/destinn/garden.webp" alt="The lawn and illuminated garden walk at Destinn Dhela Retreat at dusk" fill sizes="(min-width: 768px) 63vw, 100vw" className="object-cover" />
             </div>
             <div className="relative aspect-[4/5] overflow-hidden rounded-card md:col-start-1 md:row-start-2 md:aspect-video">
-              <Image src={destinnRoom} alt="A Destinn room with timber ceiling and balcony doors" fill placeholder="blur" sizes="(min-width: 768px) 63vw, 50vw" className="object-cover" />
+              <Image src="/destinn/room1.webp" alt="A Destinn room with timber ceiling and balcony doors" fill sizes="(min-width: 768px) 63vw, 50vw" className="object-cover" />
             </div>
             <div className="relative aspect-[4/5] overflow-hidden rounded-card md:col-start-2 md:row-span-2 md:row-start-1 md:aspect-auto">
-              <Image src={destinnBuilding} alt="Destinn Dhela Retreat building at sunset" fill placeholder="blur" sizes="(min-width: 768px) 37vw, 50vw" className="object-cover" />
+              <Image src="/destinn/banner5.webp" alt="Destinn Dhela Retreat building illuminated at sunset" fill sizes="(min-width: 768px) 37vw, 50vw" className="object-cover" />
             </div>
           </div>
         </Container>
@@ -125,7 +119,7 @@ export default function DestinnPage() {
           </ol>
 
           <div className="relative isolate mt-[clamp(48px,6vw,80px)] flex min-h-80 items-end overflow-hidden rounded-card">
-            <Image src={destinnStars} alt="A telescope on the rooftop under a starry sky" fill placeholder="blur" sizes="(min-width: 1248px) 1200px, 100vw" className="-z-20 object-cover" />
+            <Image src="/destinn/banner4.webp" alt="Astronomical telescope and bonfire on the rooftop under the evening sky at Destinn" fill sizes="(min-width: 1248px) 1200px, 100vw" className="-z-20 object-cover" />
             <div aria-hidden="true" className="scrim-bottom absolute inset-0 -z-10" />
             <div className="tone-photo max-w-[640px] p-[clamp(22px,4vw,44px)]">
               <Note>A signature Destinn evening</Note>

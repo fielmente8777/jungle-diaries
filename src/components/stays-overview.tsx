@@ -1,9 +1,6 @@
 import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
 import amaltasLogo from "@/images/amaltas-logo.png";
-import amaltasPool from "@/images/amaltas-pool.jpg";
-import destinnGarden from "@/images/destinn-garden.jpg";
-import destinnLogo from "@/images/destinn-logo.png";
 import { FactGrid } from "./blocks";
 import { Button, Container, Eyebrow, Lead, Section, TextLink } from "./ui";
 
@@ -13,10 +10,12 @@ type Stay = {
   kind: string;
   name: string;
   blurb: string;
-  image: StaticImageData;
+  image: StaticImageData | string;
   imageAlt: string;
-  logo: StaticImageData;
+  logo: StaticImageData | string;
   logoAlt: string;
+  logoWidth?: number;
+  logoHeight?: number;
   facts: Array<{ big: string; small: string }>;
   cta: string;
 };
@@ -28,8 +27,8 @@ const STAYS: Stay[] = [
     kind: "Boutique villa · Dhela Road",
     name: "Amaltas Villa by Jungle Diaries",
     blurb: "An intimate forest escape for couples, families and small groups who want a slower, more personal Corbett.",
-    image: amaltasPool,
-    imageAlt: "Amaltas Villa's stone cottage and swimming pool among trees",
+    image: "/amaltas/image4.jpg",
+    imageAlt: "Amaltas Villa stone cottage and pool lit up under the night sky",
     logo: amaltasLogo,
     logoAlt: "Amaltas by Jungle Diaries logo",
     facts: [
@@ -46,10 +45,12 @@ const STAYS: Stay[] = [
     kind: "Nature retreat · near Dhela Safari Zone",
     name: "Destinn Dhela Retreat",
     blurb: "Spacious rooms, a rooftop infinity pool, two places to eat and a night sky you can study through a telescope.",
-    image: destinnGarden,
-    imageAlt: "The lawn and lit garden walk at Destinn Dhela Retreat at dusk",
-    logo: destinnLogo,
-    logoAlt: "Destinn logo",
+    image: "/destinn/view.webp",
+    imageAlt: "Aerial view of Destinn Dhela Retreat's rooftop pool and forest setting",
+    logo: "/destinn/Logo1.jpeg",
+    logoAlt: "Destinn by Jungle Diaries logo",
+    logoWidth: 90,
+    logoHeight: 54,
     facts: [
       { big: "14", small: "rooms, some 450 sq. ft." },
       { big: "≈ 8 km", small: "to the Dhela Safari Entrance Gate" },
@@ -87,12 +88,22 @@ export function StaysOverview() {
                   src={stay.image}
                   alt={stay.imageAlt}
                   fill
-                  placeholder="blur"
+                  {...(typeof stay.image !== "string" ? { placeholder: "blur" } : {})}
                   sizes="(min-width: 768px) 50vw, 100vw"
                   className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                 />
                 <span className="absolute bottom-[18px] left-[18px] rounded-card bg-chip p-2 shadow-[0_6px_18px_rgba(0,0,0,.25)]">
-                  <Image src={stay.logo} alt={stay.logoAlt} style={{ height: 54, width: "auto" }} />
+                  {typeof stay.logo === "string" ? (
+                    <Image
+                      src={stay.logo}
+                      alt={stay.logoAlt}
+                      width={stay.logoWidth ?? 90}
+                      height={stay.logoHeight ?? 54}
+                      style={{ height: 54, width: "auto" }}
+                    />
+                  ) : (
+                    <Image src={stay.logo} alt={stay.logoAlt} style={{ height: 54, width: "auto" }} />
+                  )}
                 </span>
               </figure>
               <div className="flex flex-1 flex-col gap-4 p-[clamp(22px,3vw,32px)]">
