@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
+import { FloatingContactButtons } from "@/components/floating-contact-buttons";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { SITE_NAME, siteUrl } from "@/lib/site";
@@ -120,6 +121,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <SiteHeader />
         <main id="main">{children}</main>
         <SiteFooter />
+        <FloatingContactButtons />
       </body>
     </html>
   );
