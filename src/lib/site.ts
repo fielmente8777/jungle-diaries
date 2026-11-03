@@ -4,6 +4,7 @@ export const TAGLINE = "Your Journey. Your Story. Our Wild Connection.";
 export const WHATSAPP_NUMBER = "919258214866";
 export const PHONES = ["+91 92582 14866", "+91 96758 14866"] as const;
 export const AMALTAS_EMAIL = "amaltasbythejunglediaries@gmail.com";
+export const DESTINN_EMAIL = "destindhellaretreat@gmail.com";
 
 export const LINKS = {
   amaltasSite: "https://amaltasvilla.com/",

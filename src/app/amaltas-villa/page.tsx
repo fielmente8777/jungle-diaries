@@ -2,7 +2,19 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { NextPage, PageHero } from "@/components/blocks";
 import { Reviews } from "@/components/reviews";
-import { Button, Container, Eyebrow, H2, JsonLd, Label, Lead, Note, Section, TextLink, Ticks } from "@/components/ui";
+import {
+  Button,
+  Container,
+  Eyebrow,
+  H2,
+  JsonLd,
+  Label,
+  Lead,
+  Note,
+  Section,
+  TextLink,
+  Ticks,
+} from "@/components/ui";
 import amaltasLogo from "@/images/amaltas-logo.png";
 import { AMALTAS_EMAIL, LINKS, PHONES, siteUrl } from "@/lib/site";
 import { AMALTAS_RATING, AMALTAS_REVIEWS } from "@/lib/reviews";
@@ -17,17 +29,40 @@ export const metadata: Metadata = {
 type Room = { name: string; size: string; image: string; tags: string[] };
 
 const ROOMS: Room[] = [
-  { name: "Bijrani Room", size: "300 sq. ft.", image: "/amaltas/b-room1.jpg", tags: ["Double bed", "Private balcony", "1 extra bed"] },
-  { name: "Durgadevi Room", size: "300 sq. ft.", image: "/amaltas/du-room1.jpg", tags: ["Double bed", "Jungle-facing window", "1 extra bed"] },
-  { name: "Jhirna Room", size: "250 sq. ft.", image: "/amaltas/j-room1.jpeg", tags: ["Double bed", "Couples & solo travellers"] },
-  { name: "Sitabani Room", size: "200 sq. ft.", image: "/amaltas/s-room1.jpeg", tags: ["Double bed", "2 guests", "For couples"] },
+  {
+    name: "Bijrani Room",
+    size: "300 sq. ft.",
+    image: "/amaltas/b-room1.jpg",
+    tags: ["Double bed", "Private balcony", "1 extra bed"],
+  },
+  {
+    name: "Durgadevi Room",
+    size: "300 sq. ft.",
+    image: "/amaltas/du-room1.jpg",
+    tags: ["Double bed", "Jungle-facing window", "1 extra bed"],
+  },
+  {
+    name: "Jhirna Room",
+    size: "250 sq. ft.",
+    image: "/amaltas/j-room1.jpeg",
+    tags: ["Double bed", "Couples & solo travellers"],
+  },
+  {
+    name: "Sitabani Room",
+    size: "200 sq. ft.",
+    image: "/amaltas/s-room1.jpeg",
+    tags: ["Double bed", "2 guests", "For couples"],
+  },
 ];
 
 function Tags({ tags }: { tags: string[] }) {
   return (
     <ul className="flex flex-wrap gap-1.5">
       {tags.map((t) => (
-        <li key={t} className="rounded-full border border-line px-[9px] pt-1.5 pb-[5px] text-[0.85rem] leading-none text-ink-soft">
+        <li
+          key={t}
+          className="rounded-full border border-line px-[9px] pt-1.5 pb-[5px] text-[0.85rem] leading-none text-ink-soft"
+        >
           {t}
         </li>
       ))}
@@ -64,12 +99,21 @@ export default function AmaltasPage() {
             addressRegion: "Uttarakhand",
             addressCountry: "IN",
           },
-          amenityFeature: ["Swimming pool", "Forest-view terrace", "Free Wi-Fi", "Parking", "Dining room"].map((name) => ({
+          amenityFeature: [
+            "Swimming pool",
+            "Forest-view terrace",
+            "Free Wi-Fi",
+            "Parking",
+            "Dining room",
+          ].map((name) => ({
             "@type": "LocationFeatureSpecification",
             name,
             value: true,
           })),
-          parentOrganization: { "@type": "Organization", name: "Jungle Diaries" },
+          parentOrganization: {
+            "@type": "Organization",
+            name: "Jungle Diaries",
+          },
         }}
       />
 
@@ -80,7 +124,11 @@ export default function AmaltasPage() {
         intro="Six rooms, a pool, a forest-view terrace and a dining room for twelve. A slower, more personal way to experience Jim Corbett."
         image="/amaltas/dining-image.jpg"
         imageAlt="Amaltas Villa's pool terrace and lit verandas at dusk"
-        logo={{ src: amaltasLogo, alt: "Amaltas by Jungle Diaries", height: 56 }}
+        logo={{
+          src: amaltasLogo,
+          alt: "Amaltas by Jungle Diaries",
+          height: 56,
+        }}
       >
         <Button href="/plan-a-trip#amaltas">Enquire about Amaltas</Button>
         <Button href={LINKS.amaltasSite} variant="ghost" external>
@@ -96,11 +144,13 @@ export default function AmaltasPage() {
               Not every getaway needs an itinerary.
             </H2>
             <Lead>
-              Amaltas is a comfortable, personal base for slowing down, reconnecting with nature and seeing Corbett beyond a
-              standard safari plan.
+              Amaltas is a comfortable, personal base for slowing down,
+              reconnecting with nature and seeing Corbett beyond a standard
+              safari plan.
             </Lead>
             <Lead className="mt-3.5">
-              Spend the morning on a safari, the afternoon by the pool, or simply do less. The forest sets the pace.
+              Spend the morning on a safari, the afternoon by the pool, or
+              simply do less. The forest sets the pace.
             </Lead>
           </div>
           <figure className="relative m-0">
@@ -129,32 +179,68 @@ export default function AmaltasPage() {
               </H2>
             </div>
             <p className="max-w-[46ch] text-ink-soft">
-              Five room types and a small inventory on purpose, so there are fewer guests, more attention and quieter rooms.
+              Five room types and a small inventory on purpose, so there are
+              fewer guests, more attention and quieter rooms.
             </p>
           </div>
 
           <div className="grid gap-[clamp(14px,2vw,22px)] sm:grid-cols-2 lg:grid-cols-[1.25fr_1fr_1fr]">
             <article className="flex min-w-0 flex-col overflow-hidden rounded-card bg-paper sm:col-span-2 lg:col-span-1 lg:row-span-2">
               <div className="grid gap-[3px] sm:grid-cols-[1.4fr_1fr] lg:grid-cols-1">
-                <Image src="/amaltas/d-room1.jpg" alt="The Dhikala Family Suite bedroom" width={3000} height={2000} sizes="(min-width: 1024px) 38vw, (min-width: 640px) 58vw, 100vw" className="aspect-[4/3] h-full w-full object-cover" />
-                <Image src="/amaltas/d-romm5.jpg" alt="The jacuzzi in the Dhikala Family Suite" width={3000} height={2000} sizes="(min-width: 1024px) 38vw, (min-width: 640px) 42vw, 100vw" className="aspect-[4/3] h-full w-full object-cover lg:aspect-[2/1]" />
+                <Image
+                  src="/amaltas/d-room1.jpg"
+                  alt="The Dhikala Family Suite bedroom"
+                  width={3000}
+                  height={2000}
+                  sizes="(min-width: 1024px) 38vw, (min-width: 640px) 58vw, 100vw"
+                  className="aspect-[4/3] h-full w-full object-cover"
+                />
+                <Image
+                  src="/amaltas/d-romm5.jpg"
+                  alt="The jacuzzi in the Dhikala Family Suite"
+                  width={3000}
+                  height={2000}
+                  sizes="(min-width: 1024px) 38vw, (min-width: 640px) 42vw, 100vw"
+                  className="aspect-[4/3] h-full w-full object-cover lg:aspect-[2/1]"
+                />
               </div>
               <div className="flex flex-1 flex-col gap-1.5 px-[18px] pt-4 pb-[18px]">
                 <div className="flex items-baseline justify-between gap-3">
-                  <h3 className="text-[1.75rem] leading-[1.15]">Dhikala Family Suite</h3>
-                  <span className="text-small font-semibold whitespace-nowrap text-ink-soft tabular-nums">800 sq. ft.</span>
+                  <h3 className="text-[1.75rem] leading-[1.15]">
+                    Dhikala Family Suite
+                  </h3>
+                  <span className="text-small font-semibold whitespace-nowrap text-ink-soft tabular-nums">
+                    800 sq. ft.
+                  </span>
                 </div>
-                <p className="text-small text-ink-soft">The largest space at Amaltas, made for families and small groups travelling together.</p>
+                <p className="text-small text-ink-soft">
+                  The largest space at Amaltas, made for families and small
+                  groups travelling together.
+                </p>
                 <Tags tags={["Up to 6 guests", "2 washrooms", "Jacuzzi"]} />
               </div>
             </article>
             {ROOMS.map((room) => (
-              <article key={room.name} className="flex min-w-0 flex-col overflow-hidden rounded-card bg-paper">
-                <Image src={room.image} alt={`The ${room.name}`} width={1200} height={800} sizes="(min-width: 1024px) 28vw, (min-width: 640px) 50vw, 100vw" className="aspect-[3/2] w-full object-cover" />
+              <article
+                key={room.name}
+                className="flex min-w-0 flex-col overflow-hidden rounded-card bg-paper"
+              >
+                <Image
+                  src={room.image}
+                  alt={`The ${room.name}`}
+                  width={1200}
+                  height={800}
+                  sizes="(min-width: 1024px) 28vw, (min-width: 640px) 50vw, 100vw"
+                  className="aspect-[3/2] w-full object-cover"
+                />
                 <div className="flex flex-1 flex-col gap-1.5 px-[18px] pt-4 pb-[18px]">
                   <div className="flex items-baseline justify-between gap-3">
-                    <h3 className="text-[1.4rem] leading-[1.15]">{room.name}</h3>
-                    <span className="text-small font-semibold whitespace-nowrap text-ink-soft tabular-nums">{room.size}</span>
+                    <h3 className="text-[1.4rem] leading-[1.15]">
+                      {room.name}
+                    </h3>
+                    <span className="text-small font-semibold whitespace-nowrap text-ink-soft tabular-nums">
+                      {room.size}
+                    </span>
                   </div>
                   <Tags tags={room.tags} />
                 </div>
@@ -204,6 +290,12 @@ export default function AmaltasPage() {
                 <span key={p}>{p}</span>
               ))}
             </div>
+            <a
+              href={`mailto:${AMALTAS_EMAIL}`}
+              className="mt-1 block break-all hover:underline"
+            >
+              {AMALTAS_EMAIL}
+            </a>
             <div className="mt-4 flex flex-wrap gap-x-[22px] gap-y-2.5">
               <TextLink href="/plan-a-trip#amaltas">Enquire</TextLink>
               <TextLink href={LINKS.amaltasInstagram} external>
@@ -229,7 +321,8 @@ export default function AmaltasPage() {
             ))}
           </ul>
           <Lead className="mt-[26px]">
-            Want the whole villa? Talk to us about booking all six rooms for a family gathering or a small group.
+            Want the whole villa? Talk to us about booking all six rooms for a
+            family gathering or a small group.
           </Lead>
         </Container>
       </Section>
@@ -241,7 +334,11 @@ export default function AmaltasPage() {
         rating={AMALTAS_RATING}
       />
 
-      <NextPage href="/destinn-dhela-retreat" title="Destinn Dhela Retreat" sub="Fourteen rooms, a rooftop infinity pool and stargazing" />
+      <NextPage
+        href="/destinn-dhela-retreat"
+        title="Destinn Dhela Retreat"
+        sub="Fourteen rooms, a rooftop infinity pool and stargazing"
+      />
     </>
   );
 }
