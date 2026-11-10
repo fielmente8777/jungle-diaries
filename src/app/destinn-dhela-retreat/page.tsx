@@ -15,6 +15,8 @@ import {
   Ticks,
 } from "@/components/ui";
 import { DESTINN_EMAIL, LINKS, PHONES, siteUrl } from "@/lib/site";
+import { GalleryProps } from "./pagedata";
+import Gallery from "@/components/Gallery";
 
 export const metadata: Metadata = {
   title: "Destinn Dhela Retreat — Rooftop Infinity Pool near Dhela Safari Zone",
@@ -305,6 +307,8 @@ export default function DestinnPage() {
           </div>
         </Container>
       </Section>
+
+      <Gallery data={GalleryProps} />
 
       <NextPage
         href="/safaris"
