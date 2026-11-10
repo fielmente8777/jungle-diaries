@@ -18,6 +18,8 @@ import {
 import amaltasLogo from "@/images/amaltas-logo.png";
 import { AMALTAS_EMAIL, LINKS, PHONES, siteUrl } from "@/lib/site";
 import { AMALTAS_RATING, AMALTAS_REVIEWS } from "@/lib/reviews";
+import Gallery from "@/components/Gallery";
+import { GalleryProps } from "./pagedata";
 
 export const metadata: Metadata = {
   title: "Amaltas Villa — Boutique Villa on Dhela Road, Jim Corbett",
@@ -326,6 +328,8 @@ export default function AmaltasPage() {
           </Lead>
         </Container>
       </Section>
+
+      <Gallery data={GalleryProps} />
 
       <Reviews
         reviews={AMALTAS_REVIEWS}
