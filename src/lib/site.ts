@@ -20,6 +20,7 @@ export const NAV: NavItem[] = [
   { href: "/", label: "Home", hint: "Jungle Diaries in Corbett" },
   { href: "/amaltas-villa", label: "Amaltas Villa", hint: "Boutique villa · 6 rooms" },
   { href: "/destinn-dhela-retreat", label: "Destinn Dhela", hint: "Nature retreat · 14 rooms" },
+  { href: "/gallery", label: "Gallery", hint: "A visual journey of our stays" },
   { href: "/safaris", label: "Safaris", hint: "Zones, seasons, naturalists" },
   { href: "/journeys", label: "Journeys", hint: "Tours across Uttarakhand" },
   { href: "/about", label: "About us", hint: "Our belief and our team" },

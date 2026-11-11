@@ -39,6 +39,7 @@ export function SiteFooter() {
           <li><Ext href={LINKS.destinnSite}>destindhellaretreat.com</Ext></li>
         </Col>
         <Col title="Explore">
+          <li><Link href="/gallery" className={linkCls}>Gallery</Link></li>
           <li><Link href="/safaris" className={linkCls}>Safari zones</Link></li>
           <li><Link href="/journeys" className={linkCls}>Journeys</Link></li>
           <li><Link href="/about" className={linkCls}>About us</Link></li>
